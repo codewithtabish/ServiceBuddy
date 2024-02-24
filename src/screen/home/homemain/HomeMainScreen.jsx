@@ -3,13 +3,15 @@ import React from 'react'
 import { useUser } from "@clerk/clerk-expo";
 import HomeHeader from '../components/HomeHeader';
 import { Divider } from 'react-native-paper';
+import SearchBox from '../components/HomeSearch';
 
 
 const HomeMainScreen = () => {
     const { isLoaded, isSignedIn, user } = useUser();
   return (
-    <View className="flex-1 ">
+    <View className="flex-1 bg-white">
       <HomeHeader/>
+      <SearchBox/>
        <Divider />
 
       <Text className="text-red-800">

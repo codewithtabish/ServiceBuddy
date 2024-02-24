@@ -2,10 +2,14 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { useUser } from "@clerk/clerk-expo";
 import { Feather } from '@expo/vector-icons';
+import { Searchbar } from 'react-native-paper';
+import SearchBox from './HomeSearch';
 
 
 const HomeHeader = () => {
     const { isLoaded, isSignedIn, user } = useUser();
+      const [searchQuery, setSearchQuery] = React.useState('');
+
 
   return (
     <View>
@@ -29,6 +33,7 @@ const HomeHeader = () => {
         </View>
 
       </View>
+    
     </View>
   )
 }
