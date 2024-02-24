@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
-  }
+    },
+    "extra": {
+      "STRIPE_API_KEY": "pk_test_c3VwZXItcmVpbmRlZXItOTUuY2xlcmsuYWNjb3VudHMuZGV2JA"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-secure-store"
+    ]
+  },
+  "$schema": "services-app"
 }

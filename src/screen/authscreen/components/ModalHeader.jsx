@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { AntDesign } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo,AntDesign } from '@expo/vector-icons';
+
 
 const ModalHeader = () => {
+
+    const java=()=>{
+    console.log("ypppa")
+  }
+
   return (
       <View className="p-0 rounded-3xl">
 
@@ -27,9 +32,7 @@ const ModalHeader = () => {
         </View>
         
     </View>
-     <View className="absolute left-0 right-0 h-3">
 
-          </View>
     </View>
   )
 }
