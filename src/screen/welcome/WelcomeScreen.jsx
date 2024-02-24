@@ -1,14 +1,27 @@
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react';
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
   responsiveScreenFontSize
 } from "react-native-responsive-dimensions";
 import {LinearGradient} from 'expo-linear-gradient';
+import BottomSheet from '@gorhom/bottom-sheet';
+import AuthModal from '../authscreen/AuthModal';
 
 const WelcomeScreen = () => {
+    const modalizeRef = useRef(null);
+
+  const onOpen = (event) => {
+      event.persist();
+    modalizeRef.current?.open();
+  };
+
+
+
+
   return (
+  <>
    <ImageBackground source={require('../../../assets/images/splahtwo.png')}
    className="flex-1  object-cover-full">
      <LinearGradient
@@ -46,7 +59,7 @@ const WelcomeScreen = () => {
         Connecting You with Trusted Service Professionals
       </Text>
       <TouchableOpacity 
-        //  onPress={goToMain}
+      onPress={onOpen}
       className="bg-light-primary p-3 rounded-md "
       style={{width:responsiveScreenWidth(85),
         marginTop:responsiveScreenHeight(3)
@@ -64,10 +77,13 @@ const WelcomeScreen = () => {
      </View>
 
 
+
     
 
 
    </ImageBackground>
+     <AuthModal  myRef={modalizeRef}/>
+  </>
   )
 }
 

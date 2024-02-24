@@ -1,14 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { forwardRef } from 'react';
+import { Modalize } from 'react-native-modalize'
+import ModalHeader from './components/ModalHeader';
+import ModalLogin from './components/modallogin/ModalLogin';
 
-const AuthModal = () => {
+
+const AuthModal =({myRef},ref) => {
+
+
+
+
   return (
-    <View>
-      <Text>AuthModal</Text>
-    </View>
-  )
+      <>
+      <Modalize ref={myRef}>
+       <ModalHeader/>
+       <ModalLogin/>
+
+         
+
+
+
+      
+      </Modalize>
+    </>
+  );
 }
 
-export default AuthModal
+export default AuthModal;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
