@@ -99,3 +99,39 @@ export const businnessQueryData=async()=>{
 }
 
 
+
+export const businessByCategory=async(category)=>{
+    try {
+        const query=gql`
+        query GetBusinessList {
+  businessLists(where:{category:{name:"`+category+`"}}) {
+    id
+    name
+    about
+    contactPerson
+    email
+    address
+    createdAt
+    
+    images{
+      id
+      url
+    }
+    category{
+      id
+      name
+    }
+  
+  }
+}
+
+        `
+
+        const response=await request(MasterUrl,query)
+        return response
+        
+    } catch (error) {
+        
+    }
+}
+

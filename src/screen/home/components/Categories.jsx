@@ -32,7 +32,7 @@ const Categories = () => {
         <FlatList
         style={{width:responsiveScreenWidth(100)}}
         data={categories}
-        renderItem={({item,index})=>index<=3 && <CategoryCard item={item} key={index}/>}
+        renderItem={({item,index})=>index<=4 && <CategoryCard item={item} key={index}/>}
         horizontal={true}
         showHorizontalScrollIndicator={false}
         // numColumns={4}
