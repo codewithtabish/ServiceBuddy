@@ -1,12 +1,19 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions'
 import { Divider } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
+import {useNavigation}  from '@react-navigation/native'
 
 const BusinessCard = ({item}) => {
+    const navigation=useNavigation()
+    
   return (
-    <View className="bg-white p-2"
+    <TouchableOpacity
+    // onPress={()=>navigation.navigate('HomeBusinessDetailScreen',{
+        // bumsinessItem:item
+    // })}
+     className="bg-white p-2"
     style={{width:responsiveScreenWidth(60)}}>
         <View
         style={{width:"100%",height:responsiveScreenHeight(15)}}>
@@ -38,7 +45,7 @@ const BusinessCard = ({item}) => {
         <Text className="text-light-primary">{item?.category?.name}</Text>
       </View>
      </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

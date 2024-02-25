@@ -1,11 +1,17 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions'
 import { Ionicons } from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native'
+
 
 const HomeBusinessCatCard = ({item}) => {
+    const navigation=useNavigation()
   return (
-    <View className="my-2 rounded-md bg-white mx-4">
+    <TouchableOpacity className="my-2 rounded-md bg-white mx-4"
+    onPress={()=>navigation.navigate('HomeBusinessDetailScreen',{
+        businessItem:item
+    })}>
        <View className="flex flex-row items-center mx-4  gap-3 p-2">
          <Image
      className="rounded-md"
@@ -22,12 +28,12 @@ const HomeBusinessCatCard = ({item}) => {
         fontFamily:"outfit-bold"}}>{item?.name}</Text>
         <View className="flex flex-row  ">
             <Ionicons name="location-sharp" size={24} color="pink" />
-            <Text className="text-gray-900 text-sm font-bold ml-1">{item?.address}</Text>
+            <Text className="text-gray-900 text-sm font-bold ml-1">{item?.address}+"....."</Text>
         </View>
      </View>
        </View>
 
-    </View>
+    </TouchableOpacity>
   )
 }
 
