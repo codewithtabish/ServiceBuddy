@@ -4,6 +4,9 @@ import { useUser } from "@clerk/clerk-expo";
 import HomeHeader from '../components/HomeHeader';
 import { Divider } from 'react-native-paper';
 import SearchBox from '../components/HomeSearch';
+import HomeSlider from '../components/HomeSlider';
+import Categories from '../components/Categories';
+import BusinessListData from '../components/BusinessList';
 
 
 const HomeMainScreen = () => {
@@ -13,19 +16,11 @@ const HomeMainScreen = () => {
       <HomeHeader/>
       <SearchBox/>
        <Divider />
+       <HomeSlider/>
+       <Categories/>
+       <BusinessListData/>
 
-      <Text className="text-red-800">
-        {user?.fullName.toString()} +"  "+ 
-        {/* {user?.emailAddress.toString()} */}
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, vero fuga? Eveniet doloremque mollitia cupiditate minima laborum cumque quaerat rem, neque eaque vitae? Consequatur dolorem error tempora temporibus fugit itaque!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, vero fuga? Eveniet doloremque mollitia cupiditate minima laborum cumque quaerat rem, neque eaque vitae? Consequatur dolorem error tempora temporibus fugit itaque!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit, vero fuga? Eveniet doloremque mollitia cupiditate minima laborum cumque quaerat rem, neque eaque vitae? Consequatur dolorem error tempora temporibus fugit itaque!
-      </Text>
-      <TouchableOpacity className="bg-light-primary p-3 rounded-md w-full">
-        <Text className="text-white italic">
-            Login
-        </Text>
-      </TouchableOpacity>
+    
     </View>
   )
 }
