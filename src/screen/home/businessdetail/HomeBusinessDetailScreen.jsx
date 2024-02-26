@@ -18,6 +18,11 @@ const HomeBusinessDetailScreen = ({}) => {
       event.persist();
     modalizeRef.current?.open();
   };
+  
+  const onClose = () => {
+    modalizeRef.current?.close();  // Use modalizeRef consistently
+  };
+//   console.log("businessItem?.id",businessItem?.id)
 
 
 
@@ -89,7 +94,9 @@ const HomeBusinessDetailScreen = ({}) => {
                
 
              </View>
-             <ConfirmBookingModal myRef={modalizeRef}/>
+             <ConfirmBookingModal myRef={modalizeRef}
+             businessItemId={businessItem.id}
+             onClose={onClose}/>
                </View>
 
 

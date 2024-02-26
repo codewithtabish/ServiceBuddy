@@ -1,49 +1,85 @@
 import { StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { MyContext } from './ModalContextProvider';
+import { useUser } from '@clerk/clerk-expo';
+import { createBokkingMutation } from '../../../../utils/GlobalApi';
+import moment from 'moment';
+import {useNavigation} from '@react-navigation/native'
 
-const Suggestion = () => {
+const Suggestion = ({businessItemId,onClose}) => {
        const { suggestion, setSuggestion,selectedTimeSlot,updateIndicator,
     selectedDate } = React.useContext(MyContext);
-//   const [suggestion, setSuggestion] = useState('');
-console.log(suggestion)
+    const {user}=useUser()
+    const navigation=useNavigation()
 
   const handleSuggestionChange = (text) => {
     setSuggestion(text);
   };
 
-  const handleBooking=()=>{
-    try {
-        if(!selectedTimeSlot||!selectedDate){
-
-       ToastAndroid.showWithGravityAndOffset(
-      'please fill date and time slots',
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM,
-      25,
-      50
-    );
-          return
-        }
-        updateIndicator()
-
-        // when complete
-        setTimeout(() => {
-             console.log("The data is ",
-        suggestion,selectedDate,selectedTimeSlot
-        )
-        updateIndicator()
-            
-        }, 3000);
-       
-
-
-        
-    } catch (error) {
-        console.log("Handle Booking error is ",error)
-        
+const handleBooking = async () => {
+  try {
+    if (!selectedTimeSlot || !selectedDate) {
+      ToastAndroid.showWithGravityAndOffset(
+        'Please fill date and time slots',
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
+      return;
     }
+    updateIndicator(true)
+
+    const data = {
+      userName: user?.fullName || '',
+      userEmail: user?.primaryEmailAddress?.emailAddress || '',
+      time: selectedTimeSlot,
+      date: moment(selectedDate).format("DD-MMM-YYYY"),
+      suggestion: suggestion || '',
+      businessItemId: businessItemId || '',
+    };
+
+
+    const response = await createBokkingMutation(data);
+    const {id:bookedId}=response?.createBooking
+    if(!bookedId){
+        
+          ToastAndroid.showWithGravityAndOffset(
+        'Booking Creation Error',
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
+      updateIndicator(false)
+
+        return
+    }else{
+        updateIndicator(false)
+          ToastAndroid.showWithGravityAndOffset(
+        'Booked Successfully ... 💕',
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
+      onClose()
+      navigation.goBack()
+      return;
+    }
+
+
+    console.log('The mutation response is ', response);
+
+    // Handle the response as needed
+
+  } catch (error) {
+    console.log('Handle Booking error is ', error);
+    // Handle the error as needed
   }
+}
+
+
 
   return (
     <View style={styles.container} className=" ">

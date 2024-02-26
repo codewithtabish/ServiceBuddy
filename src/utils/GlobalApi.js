@@ -135,3 +135,33 @@ export const businessByCategory=async(category)=>{
     }
 }
 
+
+export const createBokkingMutation=async(data)=>{
+
+  try {
+    const mutation=gql`
+  mutation createBooking {
+  createBooking(
+    data: {userName: "`+data.userName+`", userEmail: "`+data.userEmail+`", date: "`+data.date+`", time: "`+data.time+`",
+     bookingStatus: Booked,
+      business: {connect: {id: "`+data.businessItemId+`"}}}
+  ) {
+    id
+  }
+  publishManyBookings(to: PUBLISHED) {
+    count
+  }
+}
+
+
+
+`
+// publishBooking(where:{id:"`+data.businessItemId+`"})
+   const response=await request(MasterUrl,mutation)
+        return response
+    
+  } catch (error) {
+    console.log("The create Booking mutation error is",error)
+  }
+  
+}

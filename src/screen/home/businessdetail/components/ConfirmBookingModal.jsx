@@ -8,7 +8,7 @@ import Suggestion from './Suggestion'
 import { ModalContextProvider } from './ModalContextProvider'
 
 
-const ConfirmBookingModal = ({myRef}) => {
+const ConfirmBookingModal = ({myRef,businessItemId,onClose}) => {
   return (
       <ModalContextProvider>
       <Modalize ref={myRef} 
@@ -16,7 +16,8 @@ const ConfirmBookingModal = ({myRef}) => {
       >
         <ModalHeader/>
         <ModalPicker/>
-        <Suggestion/>
+        <Suggestion businessItemId={businessItemId}
+        onClose={onClose}/>
        
 
   

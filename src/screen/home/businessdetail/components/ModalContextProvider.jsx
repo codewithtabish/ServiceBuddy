@@ -9,8 +9,8 @@ const ModalContextProvider = ({ children }) => {
     const [suggestion, setSuggestion] = useState("")
     const [showIndicator, setshowIndicator] = useState(false)
 
-    const updateIndicator=()=>{
-        setshowIndicator(!showIndicator)
+    const updateIndicator=(value)=>{
+        setshowIndicator(value)
     }
 
   const updateData = (newData) => {
