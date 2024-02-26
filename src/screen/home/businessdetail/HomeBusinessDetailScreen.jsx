@@ -6,11 +6,20 @@ import { Ionicons } from '@expo/vector-icons';
 import { Divider } from 'react-native-paper';
 import DetailScreenPhoto from './components/DetailScreenPhoto';
 import { Button } from 'react-native-paper';
+import ConfirmBookingModal from './components/ConfirmBookingModal';
 
 const HomeBusinessDetailScreen = ({}) => {
     const [readMore, setreadMore] = React.useState(false)
       const params=useRoute().params
       const {businessItem}=params
+         const modalizeRef = React.useRef(null);
+
+    const onOpen = (event) => {
+      event.persist();
+    modalizeRef.current?.open();
+  };
+
+
 
     return (
                <View className='flex-1'>
@@ -71,7 +80,8 @@ const HomeBusinessDetailScreen = ({}) => {
               </TouchableOpacity>
                  <TouchableOpacity 
                  className="p-2 bg-light-primary rounded-md text-white flex-1"
-                 style={{}} onPress={() => console.log('Pressed')}>
+                 style={{}} onPress={ onOpen}
+                 >
                     <Text className="text-white text-center">Book Now</Text>
                 
               </TouchableOpacity>
@@ -79,29 +89,14 @@ const HomeBusinessDetailScreen = ({}) => {
                
 
              </View>
+             <ConfirmBookingModal myRef={modalizeRef}/>
                </View>
+
 
     )
 
 
-  return (
-    <View>
-        {/* <ScrollView> */}
-      
-            <View className="my-2">
-                <Text className="text-2xl"
-                style={{
-                    fontFamily:"outfit-bold"
-                }}>{businessItem?.name}</Text>
-                <View className="py-2 flex flex-row items-center ">
-                    <Text className="text-sm font-bold">{businessItem?.contactPerson}</Text>
-                    <Text>🌤️🌤️</Text>
-                    <Text>{businessItem?.category}</Text>
-                </View>
-            </View>
-        {/* </ScrollView> */}
-    </View>
-  )
+ 
 }
 
 export default HomeBusinessDetailScreen
